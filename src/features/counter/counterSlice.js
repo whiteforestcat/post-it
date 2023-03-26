@@ -9,14 +9,28 @@ export const counterSlice = createSlice({
   initialState,
   reducers: {
     increment: (state) => {
+      // invoke function as increment()
+      // increasing state count by 1
       state.count += 1; // state.count is the same state defined above
     },
     decrement: (state) => {
+      // invoke function as decrement()
+      // decreasing state count by 1
       state.count -= 1;
+    },
+    reset: (state) => {
+      // invoke function as reset()
+      // reset state back to 0
+      state.count = 0;
+    },
+    incrementByAmount: (state, action) => {
+      // invoke function as increaseByAmount(action)
+      state.count += action.payload;
     },
   },
 });
 
-export const { increment, decrement } = counterSlice.actions;   // exporting the state functions
+export const { increment, decrement, reset, incrementByAmount } =
+  counterSlice.actions; // exporting the state functions
 
-export default counterSlice.reducer;    // exporting the entire reducer
+export default counterSlice.reducer; // exporting the entire reducer
