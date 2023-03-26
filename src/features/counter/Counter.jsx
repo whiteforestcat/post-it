@@ -22,7 +22,7 @@ const Counter = () => {
   };
 
   return (
-    <>
+    <section>
       <p>{count}</p>
       <div>
         <button onClick={() => dispatch(increment())}>+</button>
@@ -40,7 +40,7 @@ const Counter = () => {
         </button>
         <button onClick={resetAll}>Reset</button>
       </div>
-    </>
+    </section>
   );
 };
 

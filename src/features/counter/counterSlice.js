@@ -7,7 +7,8 @@ const initialState = {
 export const counterSlice = createSlice({
   name: "counter",
   initialState,
-  reducers: { // functions are stored here
+  reducers: {
+    // functions are stored here
     increment: (state) => {
       // invoke function as increment()
       // increasing state count by 1
@@ -25,6 +26,7 @@ export const counterSlice = createSlice({
     },
     incrementByAmount: (state, action) => {
       // invoke function as increaseByAmount(action)
+      // action.payload is function input
       state.count += action.payload;
     },
   },

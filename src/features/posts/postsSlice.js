@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState = [
   {
@@ -18,9 +18,32 @@ const postsSlice = createSlice({
   initialState,
   reducers: {
     // functions are stored here
+    // action.payload is function input
+
+    // postAdded(state, action) {
+    //   state.push(action.payload); // state.push is how you setState in redux in the createSlice
+    // },
+
+    //  neater code to refactor this way, see PostList.jsx
+    postAdded: {
+      reducer(state, action) {
+        state.push(action.payload); // state.push is how you setState in redux in the createSlice
+      },
+      prepare(title, content) {
+        return {
+          payload: {
+            id: nanoid(),
+            title,
+            content,
+          },
+        };
+      },
+    },
   },
 });
 
 export const selectAllPosts = (state) => state.posts;
+
+export const { postAdded } = postsSlice.actions;
 
 export default postsSlice.reducer;
