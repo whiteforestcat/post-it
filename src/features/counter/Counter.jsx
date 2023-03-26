@@ -4,7 +4,10 @@ import { increment, decrement, reset, incrementByAmount } from "./counterSlice";
 import { useState } from "react";
 
 const Counter = () => {
-  const count = useSelector((state) => state.counter.count); // creating state, useSelector is used to reference the state in counterSlice.js
+  // creating state, useSelector is used to reference the state in counterSlice.js
+  const count = useSelector((state) => state.counter.count); 
+  // look at store.js where counter is the key of the object
+  // refer to counterSlice.js, counter.count because want to access count state in initialState
   const dispatch = useDispatch();
 
   const [incrementAmount, setIncrementAmount] = useState(0);
