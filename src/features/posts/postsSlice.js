@@ -29,12 +29,13 @@ const postsSlice = createSlice({
       reducer(state, action) {
         state.push(action.payload); // state.push is how you setState in redux in the createSlice
       },
-      prepare(title, content) {
+      prepare(title, content, userId) {
         return {
           payload: {
             id: nanoid(),
             title,
             content,
+            userId, // this will be from usersSlice
           },
         };
       },
