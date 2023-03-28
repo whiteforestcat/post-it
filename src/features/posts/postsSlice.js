@@ -7,12 +7,26 @@ const initialState = [
     title: "Learning Redux ToolKit",
     content: "I've heard good things",
     date: sub(new Date(), { minutes: 10 }).toISOString(), // this gets the current date and subtracts 10min and converts it into string
+    reactions: {
+      thumbsUp: 0,
+      wow: 0,
+      heart: 0,
+      rocket: 0,
+      coffee: 0,
+    },
   },
   {
     id: "2",
     title: "Slices...",
     content: "The more I say slice, the more I want pizza.",
     date: sub(new Date(), { minutes: 5 }).toISOString(), // this gets the current date and subtracts 10min and converts it into string
+    reactions: {
+      thumbsUp: 0,
+      wow: 0,
+      heart: 0,
+      rocket: 0,
+      coffee: 0,
+    },
   },
 ];
 
@@ -40,15 +54,33 @@ const postsSlice = createSlice({
             content,
             date: new Date().toISOString(),
             userId, // this will be from usersSlice
+            reactions: {
+              thumbsUp: 0,
+              wow: 0,
+              heart: 0,
+              rocket: 0,
+              coffee: 0,
+            },
           },
         };
       },
+    },
+    reactionAdded(state, action) {
+        // action.payload here will be an object
+        // meaning the reactionAdded() argument will be an object
+      const { postId, reaction } = action.payload;
+      const exisitngPost = state.find((post) => post.id === postId);
+      if (exisitngPost) {
+        exisitngPost.reactions[reaction]++;
+        // reaction in brackets is from function input ie payload
+        // ++ means increasing the count of the value of the corresponding key (reaction)
+      }
     },
   },
 });
 
 export const selectAllPosts = (state) => state.posts;
 
-export const { postAdded } = postsSlice.actions;
+export const { postAdded, reactionAdded } = postsSlice.actions;
 
 export default postsSlice.reducer;
